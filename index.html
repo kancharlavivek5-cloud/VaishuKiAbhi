@@ -1,1 +1,624 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wedding Invitation | Vaishnavi & Abhishek</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        maroon: {
+                            800: '#5A0D15',
+                            900: '#3D070D',
+                            950: '#2A0409',
+                        },
+                        gold: {
+                            300: '#F5D77F',
+                            400: '#E6C35C',
+                            500: '#D4AF37',
+                            600: '#B8860B',
+                            700: '#946B08',
+                        },
+                        ivory: '#FFFBF2',
+                        sandstone: '#F7EFE2',
+                    },
+                    fontFamily: {
+                        serif: ['Cinzel Decorative', 'Cinzel', 'Georgia', 'serif'],
+                        cursive: ['Great Vibes', 'cursive'],
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@500;700&family=Great+Vibes&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&family=Noto+Serif+Telugu:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        .font-telugu {
+            font-family: 'Noto Serif Telugu', 'Cinzel', serif;
+        }
+        /* Traditional Indian Ornamental Motifs & Patterns */
+        .bg-mandala {
+            background-color: #2A0409;
+            background-image: radial-gradient(circle at center, rgba(212, 175, 55, 0.18) 0, rgba(42, 4, 9, 0.95) 75%),
+            radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 40%),
+            radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.08) 0%, transparent 40%);
+        }
+        
+        .gold-shimmer {
+            background: linear-gradient(90deg, #b8860b 0%, #ffe082 50%, #b8860b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: shimmer 4s linear infinite;
+        }
 
+        @keyframes shimmer {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        /* Gold Ornate Portrait Frame */
+        .portrait-frame {
+            position: relative;
+            box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.3), 0 0 20px rgba(212, 175, 55, 0.25);
+        }
+        .portrait-frame::before {
+            content: '';
+            position: absolute;
+            inset: -8px;
+            border: 2px solid #D4AF37;
+            border-radius: inherit;
+            pointer-events: none;
+            opacity: 0.7;
+        }
+        .portrait-frame::after {
+            content: '❖';
+            position: absolute;
+            top: -16px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #D4AF37;
+            font-size: 16px;
+            background: #FFFBF2;
+            padding: 0 6px;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #2A0409;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #B8860B;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #D4AF37;
+        }
+    </style>
+</head>
+<body class="bg-[#FFFBF2] text-gray-800 font-sans selection:bg-gold-500 selection:text-maroon-950 overflow-x-hidden">
+
+    <!-- Mobile Nav Bar & Desktop Header -->
+    <header class="fixed top-0 left-0 w-full z-40 bg-maroon-950/85 backdrop-blur-md border-b border-gold-500/30 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <a href="#" class="font-serif text-lg md:text-xl font-bold tracking-widest text-gold-400 flex items-center gap-2">
+                <span class="text-2xl">🕉</span> V & A
+            </a>
+            
+            <nav class="hidden md:flex items-center space-x-8 text-sm uppercase tracking-widest text-gold-300 font-medium">
+                <a href="#welcome" class="hover:text-white transition py-1">ఆహ్వానం</a>
+                <a href="#couple" class="hover:text-white transition py-1">వధూవరులు</a>
+                <a href="#events" class="hover:text-white transition py-1">శుభకార్యాలు</a>
+                <a href="#venue" class="hover:text-white transition py-1">వేదిక</a>
+            </nav>
+
+            <button id="mobileMenuBtn" class="md:hidden text-gold-400 text-xl focus:outline-none">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Drawer -->
+        <div id="mobileMenu" class="hidden md:hidden bg-maroon-950/98 border-b border-gold-500/40 px-6 py-6 space-y-4 text-center text-gold-300 uppercase tracking-widest text-sm font-semibold">
+            <a href="#welcome" class="block py-2 hover:text-white" onclick="toggleMenu()">ఆహ్వానం (Invitation)</a>
+            <a href="#couple" class="block py-2 hover:text-white" onclick="toggleMenu()">వధూవరులు (Bride & Groom)</a>
+            <a href="#events" class="block py-2 hover:text-white" onclick="toggleMenu()">శుభకార్యాలు (Ceremonies)</a>
+            <a href="#venue" class="block py-2 hover:text-white" onclick="toggleMenu()">వేదిక (Venue)</a>
+        </div>
+    </header>
+
+    <!-- HERO / INVITATION BANNER -->
+    <section id="welcome" class="relative min-h-screen bg-mandala flex items-center justify-center pt-20 pb-16 px-4 overflow-hidden text-center text-white">
+        <!-- Floating Corner Ornaments -->
+        <div class="absolute top-8 left-8 text-gold-500/20 text-7xl select-none pointer-events-none hidden sm:block">
+            <i class="fa-solid fa-fan fa-spin" style="animation-duration: 40s;"></i>
+        </div>
+        <div class="absolute bottom-8 right-8 text-gold-500/20 text-7xl select-none pointer-events-none hidden sm:block">
+            <i class="fa-solid fa-fan fa-spin" style="animation-duration: 40s;"></i>
+        </div>
+
+        <div class="max-w-4xl mx-auto z-10 relative px-6 py-12 rounded-3xl border border-gold-500/40 bg-maroon-950/70 backdrop-blur-md shadow-2xl">
+            <!-- Traditional Telugu Invocation -->
+            <div class="mb-4">
+                <span class="inline-block font-telugu text-2xl md:text-3xl font-bold text-gold-400 mb-2">॥ శ్రీరస్తు • శుభమస్తు • అవిఘ్నమస్తు ॥</span>
+                <p class="text-xs md:text-sm font-telugu tracking-wider text-gold-300/90 font-medium">మా కుటుంబీకులు మరియు ఇష్టదైవం ఆశీస్సులతో</p>
+            </div>
+
+            <div class="w-28 h-0.5 bg-gradient-to-r from-transparent via-gold-400 to-transparent mx-auto my-4"></div>
+
+            <p class="font-telugu text-sm md:text-base tracking-widest text-gold-200 mb-2">పెళ్ళి పిలుపు • శుభ ముహూర్తం</p>
+
+            <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white mb-2 leading-tight">
+                <span class="gold-shimmer">Vaishnavi</span>
+                <span class="block sm:inline text-gold-400 font-cursive text-4xl sm:text-5xl md:text-6xl mx-3 font-normal">&</span>
+                <span class="gold-shimmer">Abhishek</span>
+            </h1>
+
+            <p class="font-telugu text-gold-300 text-lg md:text-xl font-semibold mt-2">
+                వైష్ణవి <span class="text-sandstone/70 text-sm font-normal">సహచరిగా</span> అభిషేక్
+            </p>
+
+            <p class="text-sandstone/90 font-telugu text-sm md:text-base max-w-xl mx-auto font-light leading-relaxed mb-6 mt-4">
+                పరస్పర ప్రేమ, విశ్వాసం మరియు సప్తపది పవిత్ర బంధంతో ఒక్కటవుతున్న మా పెళ్ళి వేడుకకు మీ అమూల్యమైన రాకను మరియు నిండు మనస్సుతో కూడిన ఆశీస్సులను కోరుతున్నాము.
+            </p>
+
+            <!-- Save the Date Badge -->
+            <div class="inline-flex items-center gap-3 bg-gold-500/10 border border-gold-400/50 rounded-full px-6 py-2.5 mb-8">
+                <i class="fa-regular fa-calendar-check text-gold-400"></i>
+                <span class="font-serif text-sm sm:text-base text-gold-200 tracking-wider font-semibold">Sunday, 15th November 2026 • Chevella, Telangana</span>
+            </div>
+
+            <!-- Countdown Timer -->
+            <div class="grid grid-cols-4 gap-2 sm:gap-4 max-w-md mx-auto mb-8 text-center">
+                <div class="bg-maroon-900/80 border border-gold-500/40 rounded-xl p-2.5 sm:p-3 shadow-inner">
+                    <span id="days" class="block font-serif text-2xl sm:text-3xl font-bold text-gold-400">00</span>
+                    <span class="text-[10px] sm:text-xs uppercase tracking-wider text-sandstone/70">రోజులు</span>
+                </div>
+                <div class="bg-maroon-900/80 border border-gold-500/40 rounded-xl p-2.5 sm:p-3 shadow-inner">
+                    <span id="hours" class="block font-serif text-2xl sm:text-3xl font-bold text-gold-400">00</span>
+                    <span class="text-[10px] sm:text-xs uppercase tracking-wider text-sandstone/70">గంటలు</span>
+                </div>
+                <div class="bg-maroon-900/80 border border-gold-500/40 rounded-xl p-2.5 sm:p-3 shadow-inner">
+                    <span id="minutes" class="block font-serif text-2xl sm:text-3xl font-bold text-gold-400">00</span>
+                    <span class="text-[10px] sm:text-xs uppercase tracking-wider text-sandstone/70">నిమిషాలు</span>
+                </div>
+                <div class="bg-maroon-900/80 border border-gold-500/40 rounded-xl p-2.5 sm:p-3 shadow-inner">
+                    <span id="seconds" class="block font-serif text-2xl sm:text-3xl font-bold text-gold-400">00</span>
+                    <span class="text-[10px] sm:text-xs uppercase tracking-wider text-sandstone/70">క్షణాలు</span>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#events" class="w-full sm:w-auto px-8 py-3 rounded-full bg-gold-500 hover:bg-gold-400 text-maroon-950 font-bold uppercase tracking-wider text-sm transition transform hover:-translate-y-0.5 shadow-lg">
+                    శుభకార్య వివరాలు (Itinerary)
+                </a>
+                <a href="#venue" class="w-full sm:w-auto px-8 py-3 rounded-full border border-gold-400/80 hover:bg-gold-500/10 text-gold-300 font-semibold uppercase tracking-wider text-sm transition">
+                    కళ్యాణ మండపం వేదిక (Venue)
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- BRIDE & GROOM SECTION WITH REAL PORTRAITS -->
+    <section id="couple" class="py-24 px-4 bg-sandstone/40 relative">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-gold-600 font-telugu font-bold tracking-widest text-sm block mb-1">కల్యాణ వైభోగం</span>
+                <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl text-maroon-950 font-bold">వధూవరులు (Bride & Groom)</h2>
+                <div class="w-24 h-1 bg-gold-500 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-10 lg:gap-14 items-center">
+                
+                <!-- 1. Bride Card (Vaishnavi) -->
+                <div class="bg-white rounded-3xl p-6 sm:p-8 border border-gold-300/80 shadow-xl text-center relative overflow-hidden group hover:shadow-2xl transition duration-300">
+                    <div class="absolute -top-12 -right-12 w-36 h-36 bg-gold-300/20 rounded-full blur-2xl"></div>
+                    
+                    <!-- Portrait Frame with Photo & Lightbox Trigger -->
+                    <div class="w-56 h-72 sm:w-64 sm:h-80 mx-auto mb-6 rounded-2xl p-2 border-2 border-gold-500 portrait-frame relative bg-ivory">
+                        <div class="w-full h-full rounded-xl overflow-hidden relative cursor-pointer" onclick="openPhotoModal('bride')">
+                            <img id="brideImg"
+                                 src="https://raw.githubusercontent.com/kancharlavivek5-cloud/VaishuKiAbhi/main/Deepsfotography%20(40%20of%20606).jpg"
+                                 alt="Vaishnavi - The Bride"
+                                 class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-500 shadow-inner">
+                            <div class="absolute inset-0 bg-maroon-950/10 group-hover:bg-transparent transition"></div>
+                            <div class="absolute bottom-2 right-2 bg-maroon-950/80 text-gold-400 p-1.5 rounded-full text-xs opacity-0 group-hover:opacity-100 transition shadow">
+                                <i class="fa-solid fa-magnifying-glass-plus"></i>
+                            </div>
+                        </div>
+                        <div class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-maroon-950 text-gold-300 border border-gold-500 text-xs font-bold px-4 py-1 rounded-full uppercase tracking-widest shadow">
+                            వధువు • The Bride
+                        </div>
+                    </div>
+
+                    <h3 class="font-serif text-3xl font-bold text-maroon-950 mb-1">Vaishnavi</h3>
+                    <p class="font-telugu text-gold-700 font-bold text-base mb-3">చిరంజీవి సౌభాగ్యవతి వైష్ణవి</p>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-6 italic px-2">
+                        "వినయ విధేయతలతో, కుటుంబ విలువల పట్ల గౌరవంతో తనదైన చిరునవ్వుతో అందరి మనసులను ఆనందింపజేసే గుణవతి."
+                    </p>
+                </div>
+
+                <!-- 2. Groom Card (Abhishek) -->
+                <div class="bg-white rounded-3xl p-6 sm:p-8 border border-gold-300/80 shadow-xl text-center relative overflow-hidden group hover:shadow-2xl transition duration-300">
+                    <div class="absolute -top-12 -left-12 w-36 h-36 bg-gold-300/20 rounded-full blur-2xl"></div>
+
+                    <!-- Portrait Frame with Photo & Lightbox Trigger -->
+                    <div class="w-56 h-72 sm:w-64 sm:h-80 mx-auto mb-6 rounded-2xl p-2 border-2 border-gold-500 portrait-frame relative bg-ivory">
+                        <div class="w-full h-full rounded-xl overflow-hidden relative cursor-pointer" onclick="openPhotoModal('groom')">
+                            <img id="groomImg"
+                                 src="https://raw.githubusercontent.com/kancharlavivek5-cloud/VaishuKiAbhi/main/Deepsfotography%20(141%20of%20606).jpg"
+                                 alt="Abhishek - The Groom"
+                                 class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-500 shadow-inner">
+                            <div class="absolute inset-0 bg-maroon-950/10 group-hover:bg-transparent transition"></div>
+                            <div class="absolute bottom-2 right-2 bg-maroon-950/80 text-gold-400 p-1.5 rounded-full text-xs opacity-0 group-hover:opacity-100 transition shadow">
+                                <i class="fa-solid fa-magnifying-glass-plus"></i>
+                            </div>
+                        </div>
+                        <div class="absolute -bottom-3 left-1/2 transform -translate-x-1/2 bg-maroon-950 text-gold-300 border border-gold-500 text-xs font-bold px-4 py-1 rounded-full uppercase tracking-widest shadow">
+                            వరుడు • The Groom
+                        </div>
+                    </div>
+
+                    <h3 class="font-serif text-3xl font-bold text-maroon-950 mb-1">Abhishek</h3>
+                    <p class="font-telugu text-gold-700 font-bold text-base mb-3">చిరంజీవి అభిషేక్</p>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-6 italic px-2">
+                        "ఉన్నతమైన ఆలోచనలతో, సంప్రదాయాల పట్ల నిబద్ధతతో జీవిత భాగస్వామితో కలకాలం కలిసి నడవడానికి సిద్ధమైన వరుడు."
+                    </p>
+                </div>
+
+            </div>
+
+            <!-- Sacred Telugu Mangalya Shloka -->
+            <div class="mt-16 text-center max-w-3xl mx-auto bg-ivory p-6 sm:p-8 rounded-3xl border border-gold-400/70 shadow-md">
+                <p class="font-telugu text-lg sm:text-xl text-maroon-950 font-bold mb-2 leading-relaxed">
+                    “మాంగల్య తంతునానేన లోకరక్షణ హేతునా ।<br class="hidden sm:block">
+                    కంఠే బధ్నామి సుభగే సంజీవ శరదశ్శతమ్ ॥”
+                </p>
+                <div class="w-16 h-0.5 bg-gold-500 mx-auto my-3"></div>
+                <p class="font-telugu text-xs sm:text-sm text-gray-700 leading-relaxed">
+                    నా దీర్ఘాయుష్షు కొరకు, లోక క్షేమం కొరకు ఈ పవిత్రమైన మంగళసూత్రాన్ని నీ మెడలో కడుతున్నాను. నూరేళ్ళు ఆనందంగా జీవించుము.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- WEDDING EVENTS / ITINERARY TIMELINE -->
+    <section id="events" class="py-24 px-4 bg-maroon-950 text-white relative">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-gold-400 font-serif tracking-[0.25em] uppercase text-xs font-bold block mb-2">వివాహ మహోత్సవ క్రమం • Sacred Celebrations</span>
+                <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white">శుభకార్య వివరాలు</h2>
+                <p class="text-sandstone/70 text-sm mt-3 max-w-xl mx-auto font-serif">ఈ మంగళకరమైన వేడుకలకు విచ్చేసి నూతన వధూవరులను మనసారా ఆశీర్వదించ ప్రార్థన.</p>
+                <div class="w-20 h-1 bg-gold-500 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <!-- Event Cards Grid -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- 1. Pellikuthuru Function (Replacing Edhurkolu) -->
+                <div class="bg-maroon-900/60 border border-gold-500/30 rounded-2xl p-6 hover:border-gold-400 transition-all duration-300 hover:-translate-y-1 relative group">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-300 flex items-center justify-center text-xl mb-4 border border-amber-500/30 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-gem"></i>
+                    </div>
+                    <span class="text-[11px] font-semibold uppercase tracking-wider text-gold-400 bg-gold-500/10 px-2.5 py-1 rounded-md">బుధవారం, 11th Nov 2026</span>
+                    <h3 class="font-serif text-xl font-bold text-white mt-3 mb-1">పెళ్ళికూతురు వేడుక</h3>
+                    <p class="text-gold-400 text-xs font-serif font-medium mb-1">Pellikuthuru Ceremony</p>
+                    <p class="text-sandstone/70 text-xs mb-3"><i class="fa-regular fa-clock text-gold-400 mr-1.5"></i> ఉదయం 10:00 AM Onwards</p>
+                    <p class="text-xs text-gray-300 leading-relaxed mb-4">
+                        మంగళహారతులు, కాటుక, గాజులు, పసుపు కుంకుమలతో వధువును పెళ్ళికూతురిగా ముస్తాబు చేసే సంప్రదాయ కళ్యాణ వేడుక.
+                    </p>
+                    <div class="text-xs text-gold-300/80 font-medium">
+                        <strong>Dress Code:</strong> Traditional Silk Sarees & Ethnic Wear
+                    </div>
+                </div>
+
+                <!-- 2. Mehendi Ceremony -->
+                <div class="bg-maroon-900/60 border border-gold-500/30 rounded-2xl p-6 hover:border-gold-400 transition-all duration-300 hover:-translate-y-1 relative group">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-300 flex items-center justify-center text-xl mb-4 border border-emerald-500/30 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-spa"></i>
+                    </div>
+                    <span class="text-[11px] font-semibold uppercase tracking-wider text-gold-400 bg-gold-500/10 px-2.5 py-1 rounded-md">శుక్రవారం, 13th Nov 2026</span>
+                    <h3 class="font-serif text-xl font-bold text-white mt-3 mb-1">మెహందీ వేడుక</h3>
+                    <p class="text-gold-400 text-xs font-serif font-medium mb-1">Mehendi Celebrations</p>
+                    <p class="text-sandstone/70 text-xs mb-3"><i class="fa-regular fa-clock text-gold-400 mr-1.5"></i> ఉదయం 09:00 AM Onwards</p>
+                    <p class="text-xs text-gray-300 leading-relaxed mb-4">
+                        పచ్చని గోరింటాకు డిజైన్లు, సంగీతం, గాజుల సందడి మరియు కుటుంబ సభ్యుల సంబరాలతో కూడిన శుభదినం.
+                    </p>
+                    <div class="text-xs text-gold-300/80 font-medium">
+                        <strong>Dress Code:</strong> Festive Green & Floral Pastels
+                    </div>
+                </div>
+
+                <!-- 3. Haldi & Mangala Snanam (Updated to 13th Nov, 4:00 PM) -->
+                <div class="bg-maroon-900/60 border border-gold-500/30 rounded-2xl p-6 hover:border-gold-400 transition-all duration-300 hover:-translate-y-1 relative group">
+                    <div class="w-12 h-12 rounded-xl bg-yellow-500/20 text-yellow-300 flex items-center justify-center text-xl mb-4 border border-yellow-500/30 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-sun"></i>
+                    </div>
+                    <span class="text-[11px] font-semibold uppercase tracking-wider text-gold-400 bg-gold-500/10 px-2.5 py-1 rounded-md">శుక్రవారం, 13th Nov 2026</span>
+                    <h3 class="font-serif text-xl font-bold text-white mt-3 mb-1">పసుపు & మంగళస్నానం</h3>
+                    <p class="text-gold-400 text-xs font-serif font-medium mb-1">Haldi & Mangala Snanam</p>
+                    <p class="text-sandstone/70 text-xs mb-3"><i class="fa-regular fa-clock text-gold-400 mr-1.5"></i> సాయంత్రం 04:00 PM Onwards</p>
+                    <p class="text-xs text-gray-300 leading-relaxed mb-4">
+                        సుగంధ ద్రవ్యాలు, పసుపు పూత, మంగళస్నానం మరియు పూల వర్షంతో జరిపే పవిత్రమైన సంప్రదాయ శుద్ధి కార్యక్రమం.
+                    </p>
+                    <div class="text-xs text-gold-300/80 font-medium">
+                        <strong>Dress Code:</strong> Shades of Yellow & Marigold
+                    </div>
+                </div>
+
+                <!-- 4. Pochamma Nagulu & Kotnam (Replacing Sangeeth) -->
+                <div class="bg-maroon-900/60 border border-gold-500/30 rounded-2xl p-6 hover:border-gold-400 transition-all duration-300 hover:-translate-y-1 relative group">
+                    <div class="w-12 h-12 rounded-xl bg-orange-500/20 text-orange-300 flex items-center justify-center text-xl mb-4 border border-orange-500/30 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-om"></i>
+                    </div>
+                    <span class="text-[11px] font-semibold uppercase tracking-wider text-gold-400 bg-gold-500/10 px-2.5 py-1 rounded-md">శనివారం, 14th Nov 2026</span>
+                    <h3 class="font-serif text-xl font-bold text-white mt-3 mb-1">పోచమ్మ నాగులు & కొట్నం</h3>
+                    <p class="text-gold-400 text-xs font-serif font-medium mb-1">Pochamma Nagulu & Kotnam Ceremony</p>
+                    <p class="text-sandstone/70 text-xs mb-3"><i class="fa-regular fa-clock text-gold-400 mr-1.5"></i> ఉదయం 09:00 AM Onwards</p>
+                    <p class="text-xs text-gray-300 leading-relaxed mb-4">
+                        కులదేవత పోచమ్మ అమ్మవారి పూజ, నాగుల శాంతి మరియు సంప్రదాయ రోకటి కొట్నం దంచే పవిత్ర తెలంగాణ వివాహ ఆచారం.
+                    </p>
+                    <div class="text-xs text-gold-300/80 font-medium">
+                        <strong>Dress Code:</strong> Festive Traditional Attire
+                    </div>
+                </div>
+
+                <!-- 5. Sacred Vivah (Muhurtham) -->
+                <div class="bg-gradient-to-b from-maroon-900 to-maroon-800 border-2 border-gold-400 rounded-2xl p-6 hover:border-gold-300 transition-all duration-300 hover:-translate-y-1 relative shadow-2xl">
+                    <div class="absolute -top-3 right-4 bg-gold-500 text-maroon-950 font-bold text-[10px] px-3 py-1 rounded-full uppercase tracking-wider font-serif">
+                        శుభ ముహూర్తం
+                    </div>
+                    <div class="w-12 h-12 rounded-xl bg-gold-500/20 text-gold-300 flex items-center justify-center text-xl mb-4 border border-gold-500/40">
+                        <i class="fa-solid fa-fire"></i>
+                    </div>
+                    <span class="text-[11px] font-semibold uppercase tracking-wider text-gold-400 bg-gold-500/10 px-2.5 py-1 rounded-md">ఆదివారం, 15th Nov 2026</span>
+                    <h3 class="font-serif text-xl font-bold text-white mt-3 mb-1">కళ్యాణ మహోత్సవం (ముహూర్తం)</h3>
+                    <p class="text-gold-400 text-xs font-serif font-medium mb-1">Sacred Vivaha Muhurtham</p>
+                    <p class="text-sandstone/70 text-xs mb-3"><i class="fa-regular fa-clock text-gold-400 mr-1.5"></i> ఉదయం 09:58 AM (సుముహూర్తం)</p>
+                    <p class="text-xs text-gray-300 leading-relaxed mb-4">
+                        జీలకర్ర బెల్లం, మాంగల్యధారణ, సప్తపది, తలంబ్రాలు మరియు అరుంధతీ నక్షత్ర దర్శనంతో కూడిన పవిత్ర వివాహ బంధం.
+                    </p>
+                    <div class="text-xs text-gold-300/90 font-medium">
+                        <strong>Dress Code:</strong> Pattu Sarees & Traditional Dhotis / Kurthas
+                    </div>
+                </div>
+
+                <!-- 6. Grand Reception -->
+                <div class="bg-maroon-900/60 border border-gold-500/30 rounded-2xl p-6 hover:border-gold-400 transition-all duration-300 hover:-translate-y-1 relative group">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/20 text-amber-300 flex items-center justify-center text-xl mb-4 border border-amber-500/30 group-hover:scale-110 transition">
+                        <i class="fa-solid fa-champagne-glasses"></i>
+                    </div>
+                    <span class="text-[11px] font-semibold uppercase tracking-wider text-gold-400 bg-gold-500/10 px-2.5 py-1 rounded-md">మంగళవారం, 17th Nov 2026</span>
+                    <h3 class="font-serif text-xl font-bold text-white mt-3 mb-1">స్నేహ విందు / రిసెప్షన్</h3>
+                    <p class="text-gold-400 text-xs font-serif font-medium mb-1">Grand Wedding Reception & Dinner</p>
+                    <p class="text-sandstone/70 text-xs mb-3"><i class="fa-regular fa-clock text-gold-400 mr-1.5"></i> సాయంత్రం 07:00 PM Onwards</p>
+                    <p class="text-xs text-gray-300 leading-relaxed mb-4">
+                        వధూవరులకు శుభాకాంక్షలు అందజేస్తూ, మధురమైన విందు భోజనం మరియు కుటుంబ కలయికతో జరుపుకునే సంతోషభరిత సాయంత్రం.
+                    </p>
+                    <div class="text-xs text-gold-300/80 font-medium">
+                        <strong>Dress Code:</strong> Royal Evening Wear / Ethnic Formals
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- VENUE & TRAVEL DETAILS -->
+    <section id="venue" class="py-24 px-4 bg-sandstone/30">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-gold-600 font-telugu font-bold tracking-widest text-sm block mb-1">శుభ వేదిక వివరాలు</span>
+                <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl text-maroon-950 font-bold">కల్యాణ ప్రాంగణం (Venue)</h2>
+                <div class="w-20 h-1 bg-gold-500 mx-auto mt-4 rounded-full"></div>
+            </div>
+
+            <div class="bg-white rounded-3xl border border-gold-400/40 shadow-xl overflow-hidden grid md:grid-cols-12">
+                <!-- Venue details -->
+                <div class="p-8 md:p-12 md:col-span-7 flex flex-col justify-between">
+                    <div>
+                        <div class="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-gold-700 font-bold bg-gold-500/10 px-3 py-1.5 rounded-full mb-4">
+                            <i class="fa-solid fa-location-dot"></i> AGS Convention, Chevella
+                        </div>
+                        <h3 class="font-serif text-2xl sm:text-3xl text-maroon-950 font-bold mb-3">AGS Convention Hall</h3>
+                        <p class="font-telugu text-gray-600 text-sm leading-relaxed mb-6">
+                            విశాలమైన పచ్చిక బయళ్ళు, అందమైన కల్యాణ వేదిక మరియు సకల సౌకర్యాలతో కూడిన ప్రాంగణంలో మా శుభకార్యం జరుగును.
+                        </p>
+
+                        <div class="space-y-3.5 mb-8 text-sm">
+                            <div class="flex items-start gap-3">
+                                <i class="fa-solid fa-map-pin text-gold-600 mt-1"></i>
+                                <div>
+                                    <strong class="text-gray-900 block font-medium">చిరునామా (Address):</strong>
+                                    <span class="text-gray-600 font-medium">AGS Convention, Chevella Road, Chevella, Telangana 501503, India</span>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i class="fa-solid fa-calendar-day text-gold-600 mt-1"></i>
+                                <div>
+                                    <strong class="text-gray-900 block font-medium">తేదీ & సమయం:</strong>
+                                    <span class="text-gray-600">ఆదివారం, 15 నవంబర్ 2026 (Sunday, 15th Nov 2026)</span>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3">
+                                <i class="fa-solid fa-square-parking text-gold-600 mt-1"></i>
+                                <div>
+                                    <strong class="text-gray-900 block font-medium">పార్కింగ్ సౌకర్యం:</strong>
+                                    <span class="text-gray-600">అతిథులందరికీ విస్తారమైన కార్ మరియు వాహన పార్కింగ్ సదుపాయం కలదు.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-4 pt-4 border-t border-gray-100">
+                        <a href="https://maps.google.com/?q=AGS+Convention+Chevella+Telangana" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-maroon-900 hover:bg-maroon-800 text-gold-300 font-semibold px-6 py-3 rounded-full text-xs uppercase tracking-wider transition shadow">
+                            <i class="fa-solid fa-location-arrow"></i> Google Maps లో చూడండి
+                        </a>
+                        <button onclick="copyAddress()" class="inline-flex items-center gap-2 border border-gray-300 hover:border-gold-500 text-gray-700 px-5 py-3 rounded-full text-xs uppercase tracking-wider transition">
+                            <i class="fa-regular fa-copy"></i> చిరునామా కాపీ చేయండి
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Venue Map Illustration & Visual Card -->
+                <div class="md:col-span-5 bg-maroon-900 p-8 flex flex-col justify-center items-center text-center text-white relative min-h-[300px]">
+                    <div class="w-20 h-20 rounded-full bg-gold-500/20 flex items-center justify-center text-gold-400 text-3xl mb-4 border border-gold-400/40">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                    <h4 class="font-serif text-xl font-bold text-gold-300 mb-2">సహాయం & సమాచారం</h4>
+                    <p class="font-telugu text-sandstone/80 text-xs leading-relaxed max-w-xs mb-6">
+                        దూర ప్రాంతాల నుండి విచ్చేసే బంధుమిత్రులకు వసతి మరియు ప్రయాణ మార్గదర్శనం కోసం సంప్రదించండి.
+                    </p>
+                    <div class="bg-maroon-950/70 p-4 rounded-xl border border-gold-500/30 text-xs w-full max-w-xs text-left space-y-2">
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">కళ్యాణ హెల్ప్‌డెస్క్:</span>
+                            <span class="text-gold-300 font-mono">+91 98765 43210</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-400">ప్రదేశం:</span>
+                            <span class="text-gold-300">చేవెళ్ళ, తెలంగాణ</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PHOTO MODAL / LIGHTBOX -->
+    <div id="photoModal" class="fixed inset-0 z-50 bg-black/90 hidden backdrop-blur-sm flex items-center justify-center p-4">
+        <button onclick="closePhotoModal()" class="absolute top-5 right-5 text-white/80 hover:text-white text-3xl z-50">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="max-w-2xl max-h-[90vh] text-center">
+            <img id="modalImg" src="" alt="Enlarged Portrait" class="max-h-[80vh] w-auto mx-auto rounded-2xl border-2 border-gold-500 shadow-2xl object-contain">
+            <p id="modalCaption" class="text-gold-300 font-serif text-lg font-bold mt-4"></p>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-maroon-950 text-white py-12 px-4 border-t border-gold-500/30 text-center">
+        <div class="max-w-4xl mx-auto space-y-4">
+            <div class="font-serif text-2xl text-gold-400 font-bold">
+                Vaishnavi & Abhishek
+            </div>
+            <p class="font-telugu text-sandstone/70 text-xs max-w-md mx-auto leading-relaxed">
+                మా పెళ్ళి వేడుకలో పాల్గొని నిండు మనసుతో ఆశీర్వదించబోతున్న బంధుమిత్రులందరికీ హృదయపూర్వక ధన్యవాదాలు.
+            </p>
+            <div class="w-16 h-0.5 bg-gold-500/40 mx-auto my-3"></div>
+            <p class="text-[11px] text-sandstone/50 uppercase tracking-widest">
+                #VaishnaviWedsAbhishek • 15th November 2026 • AGS Convention, Chevella
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // --- 1. COUNTDOWN TIMER ---
+        // Setting target date: November 15, 2026 09:58:00
+        const weddingDate = new Date("November 15, 2026 09:58:00").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const difference = weddingDate - now;
+
+            if (difference > 0) {
+                const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+                document.getElementById("days").innerText = String(days).padStart(2, '0');
+                document.getElementById("hours").innerText = String(hours).padStart(2, '0');
+                document.getElementById("minutes").innerText = String(minutes).padStart(2, '0');
+                document.getElementById("seconds").innerText = String(seconds).padStart(2, '0');
+            } else {
+                document.getElementById("days").innerText = "00";
+                document.getElementById("hours").innerText = "00";
+                document.getElementById("minutes").innerText = "00";
+                document.getElementById("seconds").innerText = "00";
+            }
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // --- 2. MOBILE MENU TOGGLE ---
+        const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+        const mobileMenu = document.getElementById("mobileMenu");
+
+        function toggleMenu() {
+            mobileMenu.classList.toggle("hidden");
+        }
+        mobileMenuBtn.addEventListener("click", toggleMenu);
+
+        // --- 3. PHOTO PREVIEW / REPLACEMENT HELPER ---
+        function previewUserImage(event, targetImgId) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const target = document.getElementById(targetImgId);
+                    if (target) {
+                        target.src = e.target.result;
+                        showToast("ఫోటో విజయవంతంగా అప్‌డేట్ చేయబడింది!");
+                    }
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // --- 4. PHOTO LIGHTBOX MODAL ---
+        function openPhotoModal(type) {
+            const modal = document.getElementById("photoModal");
+            const modalImg = document.getElementById("modalImg");
+            const modalCaption = document.getElementById("modalCaption");
+
+            if (type === 'bride') {
+                modalImg.src = document.getElementById("brideImg").src;
+                modalCaption.innerText = "చిరంజీవి సౌభాగ్యవతి వైష్ణవి (The Bride)";
+            } else {
+                modalImg.src = document.getElementById("groomImg").src;
+                modalCaption.innerText = "చిరంజీవి అభిషేక్ (The Groom)";
+            }
+            modal.classList.remove("hidden");
+        }
+
+        function closePhotoModal() {
+            document.getElementById("photoModal").classList.add("hidden");
+        }
+
+        // --- 5. COPY ADDRESS FEATURE ---
+        function copyAddress() {
+            const address = "AGS Convention, Chevella Road, Chevella, Telangana 501503, India";
+            const tempInput = document.createElement("input");
+            tempInput.value = address;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            showToast("కళ్యాణ వేదిక చిరునామా కాపీ చేయబడింది!");
+        }
+
+        function showToast(msg) {
+            const banner = document.createElement("div");
+            banner.className = "fixed bottom-6 left-1/2 transform -translate-x-1/2 bg-maroon-900 border border-gold-400 text-gold-200 px-6 py-2.5 rounded-full shadow-2xl text-xs font-semibold z-50 transition-all duration-300";
+            banner.innerText = msg;
+            document.body.appendChild(banner);
+            setTimeout(() => {
+                banner.remove();
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
